@@ -9,6 +9,6 @@ class Supplier extends Model
     protected $guarded = [];
 
     public function products() {
-    	return $this->belongsTo(Product::class);
+    	return $this->hasMany(Product::class);
     }
 }
