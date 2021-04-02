@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+Use Alert;
 use Illuminate\Http\Request;
 use App\Models\{Supplier, Product};
+use App\Http\Requests\SupplierRequest;
 
 class SupplierController extends Controller
 {
@@ -14,7 +16,7 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        $suppliers = Supplier::orderBy('name', 'ASC')->get();
+        $suppliers = Supplier::orderBy('created_at', 'ASC')->get();
 
         return view('supplier.index', compact('suppliers'));
     }
@@ -35,9 +37,20 @@ class SupplierController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SupplierRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        $data = Supplier::create([
+            'name' => $request->name,
+            'slug' => \Str::slug($request->name, '-'),
+            'address' => $request->address,
+            'phone' => $request->phone,
+        ]);
+
+        Alert::success('Success', 'Berhasil menambahkan supplier baru.');
+
+        return redirect()->back();
     }
 
     /**
@@ -69,9 +82,24 @@ class SupplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SupplierRequest $request, $id)
     {
-        //
+        $validation = $request->validated();
+
+        $supplier = Supplier::findOrFail($id);
+
+        $data = [
+            'name' => $request->name,
+            'slug' => \Str::slug($request->name, '-'),
+            'address' => $request->address,
+            'phone' => $request->phone,
+        ];
+
+        $supplier->update($data);
+
+        Alert::success('Success', 'Berhasil mengubah data supplier..');
+
+        return redirect(route('supplier.index'));
     }
 
     /**
@@ -82,6 +110,11 @@ class SupplierController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $supplier = Supplier::findOrFail($id);
+        $supplier->delete();
+
+        Alert::success('Success', 'Berhasil Menghapus data '.$supplier->name);
+
+        return redirect(route('supplier.index'));
     }
 }

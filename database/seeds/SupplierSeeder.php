@@ -12,54 +12,50 @@ class SupplierSeeder extends Seeder
     public function run()
     {
         // Supplier
-    	\DB::table('categories')->insert([
+    	\DB::table('suppliers')->insert([
         	0 => [
-                'id' 	=> 1,
-                'name' 	=> 'Ekonomi',
-                'slug' 	=> 'ekonomi',
+                'id' 		=> 1,
+                'name' 		=> 'PT. Sumber Maruk',
+                'slug' 		=> 'pt-sumber-maruk',
+                'address' 	=> 'Cibubur, Jakarta Timur',
+                'phone' 	=> '',
                 'created_at'=> '2021-01-07 08:27:30',
             ],
 
             1 => [
-                'id' 	=> 2,
-                'name' 	=> 'Otomotif',
-                'slug' 	=> 'motorsport',
-                'created_at'=> '2021-01-07 08:27:30'   
+                'id' 		=> 2,
+                'name' 		=> 'PT. Angkasa Jaya',
+                'slug' 		=> 'pt-angkasa-jaya',
+                'address' 	=> 'Cilegon, Jakarta Utara',
+                'phone' 	=> '',
+                'created_at'=> '2021-01-07 08:27:30',
             ],
 
             2 => [
-                'id' 	=> 3,
-                'name' 	=> 'Olahraga',
-                'slug' 	=> 'olahraga',
-                'created_at'=> '2021-01-07 08:27:30'   
+                'id' 		=> 3,
+                'name' 		=> 'PT. Dewa Kipas',
+                'slug' 		=> 'pt-dewa-kipas',
+                'address' 	=> 'Cibubur, Jakarta Timur',
+                'phone' 	=> '',
+                'created_at'=> '2021-01-07 08:27:30',  
             ],
 
             3 => [
-                'id' 	=> 4,
-                'name' 	=> 'Pendidikan',
-                'slug' 	=> 'pendidkan',
-                'created_at'=> '2021-01-07 08:27:30'   
+                'id' 		=> 4,
+                'name' 		=> 'PT. Orang Tua',
+                'slug' 		=> 'pt-orang-tua',
+                'address' 	=> 'Jakarta Pusat',
+                'phone' 	=> '',
+                'created_at'=> '2021-01-07 08:27:30',
             ],
 
             4 => [
-                'id' 	=> 5,
-                'name' 	=> 'Politik',
-                'slug' 	=> 'politik',
-                'created_at'=> '2021-01-07 08:27:30'   
-            ],
-
-            5 => [
-                'id' 	=> 6,
-                'name' 	=> 'Gaya Hidup',
-                'slug' 	=> 'gaya-hidup',
-                'created_at'=> '2021-01-07 08:27:30'   
-            ],
-
-            6 => [
-                'id' 	=> 7,
-                'name' 	=> 'Bisnis',
-                'slug' 	=> 'bisnis',
-                'created_at'=> '2021-01-07 08:27:30'   
+                'id' 		=> 5,
+                'name' 		=> 'PT. Kadal Gurun',
+                'slug' 		=> 'pt-kadal-gurun',
+                'address' 	=> 'Cibubur, Jakarta Timur',
+                'phone' 	=> '',
+                'created_at'=> '2021-01-07 08:27:30',
             ],
 
         ]);

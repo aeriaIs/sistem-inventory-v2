@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Ecommerce Dashboard &mdash; Stisla</title>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <title>Sistem Inventory</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -19,6 +20,16 @@
   <link rel="stylesheet" href="{{ asset('stisla/css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('stisla/css/components.css') }}">
 
+  <!-- SweetAlert -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
+  <script>
+      window.Laravel = {!! json_encode([
+          'csrfToken' => csrf_token(),
+      ]) !!};
+  </script>
+
   @yield('css')
 </head>
 
@@ -27,7 +38,7 @@
     <div class="main-wrapper">
       @include('layouts.backend.partials.navbar')
       @include('layouts.backend.partials.sidebar') 
-
+      @include('sweetalert::alert')
       <!-- Main Content -->
       <div class="main-content">
         <section class="section">
@@ -53,6 +64,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script src="{{ asset('stisla/js/stisla.js')}}"></script>
+
+  <!-- Datatable -->
+  <script type="text/javascript" src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 
   <!-- JS Libraies -->
   <script src="{{ asset('stisla/node_modules/jquery-sparkline/jquery.sparkline.min.js') }}"></script>
