@@ -26,7 +26,7 @@ class ProductRequest extends FormRequest
         return [
             'supplier_id' => 'required',
             'name' => 'required',
-            'productId' => 'required|unique:products',
+            'productId' => 'required',
             'minimum_stock' => 'required',
             'buy_price' => 'required',
             'sell_price' => 'required',

@@ -2,14 +2,6 @@
 
 @section('title', 'Tambah Product Baru')
 
-@section('css')
-<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
-@endsection
-
-@section('header')
-
-@endsection
-
 @section('content')
 <div class="col-12 col-md-12 col-lg-12">
   <div class="card">
@@ -17,7 +9,7 @@
       <h4>Masukkan Data Product</h4>
     </div>
     <div class="card-body">
-      <form role="form" action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
+      <form role="form" action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="box-body">
 
@@ -81,10 +73,6 @@
 
 @section('js')
 <script>
-  $(document).ready( function () {
-      $('#myTable').DataTable();
-  } );
-
   function loadPreview(input, id) {
     id = id || '#preview_img';
     if (input.files && input.files[0]) {
@@ -97,31 +85,5 @@
         reader.readAsDataURL(input.files[0]);
     }
   }
-
-  $('body').on("click",".delete-supplier",function(){
-      var current_object = $(this);
-      swal({
-          title: "Apakah anda Yakin?",
-          text: "Data yang dihapus tidak akan bisa dikembalikan!",
-          type: "warning",
-          showCancelButton: true,
-          dangerMode: true,
-          cancelButtonClass: '#ffffff',
-          confirmButtonColor: '#dc3545',
-          confirmButtonText: 'Delete',
-      },function (result) {
-          if (result) {
-              var action = current_object.attr('data-action');
-              var token = jQuery('meta[name="csrf-token"]').attr('content');
-              var id = current_object.attr('data-id');
-
-              $('body').html("<form class='form-inline remove-form' method='post' action='"+action+"'></form>");
-              $('body').find('.remove-form').append('<input name="_method" type="hidden" value="delete">');
-              $('body').find('.remove-form').append('<input name="_token" type="hidden" value="'+token+'">');
-              $('body').find('.remove-form').append('<input name="id" type="hidden" value="'+id+'">');
-              $('body').find('.remove-form').submit();
-          }
-      });
-  });
 </script>
 @endsection

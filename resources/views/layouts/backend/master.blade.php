@@ -20,7 +20,6 @@
   <link rel="stylesheet" href="{{ asset('stisla/css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('stisla/css/components.css') }}">
 
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
   <!-- SweetAlert -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
@@ -42,6 +41,15 @@
       @include('sweetalert::alert')
       <!-- Main Content -->
       <div class="main-content">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <section class="section">
           <div class="section-header">
             <h1 style="font-weight: bold;"> @yield('title') </h1>

@@ -6,13 +6,13 @@
 <div class="col-12 col-md-12 col-lg-12">
   <div class="card text-center">
     <div class="card-header">
-      <h4>Simple</h4>
+      <h4>Detail - {{ $product->name }}</h4>
     </div>
     <div class="card-body">
       <div id="carouselExampleIndicators">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img class="d-block w-50" src="{{ asset('uploads/product-image/'.$product->image) }}" alt="First slide" height="400">
+            <img class="justify-content-center w-50" src="{{ asset('uploads/product-image/'.$product->image) }}" alt="First slide" height="400">
           </div>
         </div>
       </div>

@@ -2,6 +2,11 @@
 
 @section('title', 'Data Supplier')
 
+@section('css')
+  <!-- Datatable CSS -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+@endsection
+
 @section('content')
 <div class="col-12 col-md-12 col-lg-12">
 	<div class="card">

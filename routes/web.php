@@ -12,11 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('product.index');
+    return view('dashboard');
 });
 
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/supplier', 'SupplierController');
 Route::resource('/product', 'ProductController');
+Route::resource('/order', 'OrderController');
 Auth::routes();

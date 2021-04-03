@@ -72,6 +72,7 @@ class ProductController extends Controller
 	            'stock' => 1,
 	            'buy_price' => $request->buy_price,
 	            'sell_price' => $request->sell_price,
+	            'image' => 'no-product.png',
             ]);
         }
 
@@ -101,7 +102,10 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $product = Product::findOrFail($product->id);
+        $suppliers = Supplier::orderBy('name', 'ASC')->get();
+
+        return view('product.edit', compact('suppliers', 'product'));
     }
 
     /**
@@ -111,9 +115,60 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductRequest $request, Product $product)
+    public function update(ProductRequest $request, $id)
     {
-        //
+    	try {
+    		$validated = $request->validated();
+
+	    	$product = Product::findOrFail($id);
+
+	        if ($request->hasFile('image')) {
+	            $file = $request->file('image');
+	            $filename = time() . '.' . $file->getClientOriginalExtension();
+	            $destinationPath = public_path('/uploads/product-image/');
+	            $file->move($destinationPath, $filename);
+
+	            if($product->image != 'no-product.png') {
+	            	$image = File::delete($destinationPath . $post->image); 
+	            }
+
+	            $data_product = [
+	                'supplier_id' => $request->supplier_id,
+		            'name' => $request->name,
+		            'slug'=> \Str::slug($request->name, '-'),
+		            'productId' => $request->productId,
+		            'minimum_stock' => $request->minimum_stock,
+		            'stock' => 1,
+		            'buy_price' => $request->buy_price,
+		            'sell_price' => $request->sell_price,
+		            'image' => $filename,
+	            ];
+
+	        	$product->update($data_product);
+
+	        }else {
+	        	$data_product = [
+	                'supplier_id' => $request->supplier_id,
+		            'name' => $request->name,
+		            'slug'=> \Str::slug($request->name, '-'),
+		            'productId' => $request->productId,
+		            'minimum_stock' => $request->minimum_stock,
+		            'stock' => 1,
+		            'buy_price' => $request->buy_price,
+		            'sell_price' => $request->sell_price,
+	            ];
+
+	        	$product->update($data_product);
+	        }
+    		
+    	} catch (\Exception $e) {
+    		Alert::error('Error', $e->getMessage());
+    	}
+    	
+
+    	Alert::success('Success', 'Berhasil mengubah data product.');
+
+        return redirect(route('product.index'));
     }
 
     /**
@@ -124,6 +179,11 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product = Product::findOrFail($product->id);
+        $product->delete();
+
+       	Alert::success('Success', 'Berhasil menghapus data product');
+
+       	return redirect(route('product.index'));
     }
 }
