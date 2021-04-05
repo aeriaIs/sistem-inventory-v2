@@ -41,20 +41,20 @@
       @include('sweetalert::alert')
       <!-- Main Content -->
       <div class="main-content">
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
         <section class="section">
           <div class="section-header">
             <h1 style="font-weight: bold;"> @yield('title') </h1>
           </div>
-            @yield('header')
+          @yield('header')
+          @if ($errors->any())
+              <div class="alert alert-danger">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+              </div>
+          @endif
           <div class="section-body">
             <!-- Content -->
             @yield('content')
@@ -90,6 +90,10 @@
 
   <!-- Page Specific JS File -->
   <script src="{{ asset('stisla/js/page/index.js') }}"></script>
+
+  <!-- Selectize -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/standalone/selectize.min.js"></script>
 
   @yield('js')
 

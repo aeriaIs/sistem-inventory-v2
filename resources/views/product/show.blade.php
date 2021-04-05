@@ -5,8 +5,9 @@
 @section('content')
 <div class="col-12 col-md-12 col-lg-12">
   <div class="card text-center">
-    <div class="card-header">
-      <h4>Detail - {{ $product->name }}</h4>
+    <div class="card-header text-center">
+      <a href="{{ route('product.index') }}" class="btn btn-xs btn-primary"><i class="fas fa-backward"> </i>&nbsp; Back </a>
+      <h4 class="text-center" style="margin-left: 20px;">Detail - {{ $product->name }}</h4>
     </div>
     <div class="card-body">
       <div id="carouselExampleIndicators">
